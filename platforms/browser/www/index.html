@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+        <title>Buzzr</title>
+        <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+        <link rel="stylesheet" href="iscrollview/jquery.mobile.iscrollview.css" />
+        <link rel="stylesheet" href="iscrollview/jquery.mobile.iscrollview-pull.css" />
+        <script type="text/javascript" src="iscrollview/iscroll.js"></script>
+        <script type="text/javascript" src="iscrollview/jquery.mobile.iscrollview.js"></script>
+        <script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+        <script type="text/javascript" src="js/jquery-migrate-3.0.0.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+        <script type="text/javascript" src="js/firebase.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="index.js"></script>
+        <!--link rel="stylesheet" href="http://example.gajotres.net/iscrollview/jquery.mobile.iscrollview.css" />
+        <link rel="stylesheet" href="http://example.gajotres.net/iscrollview/jquery.mobile.iscrollview-pull.css" />
+        <script type="text/javascript" src="http://example.gajotres.net/iscrollview/iscroll.js"></script>
+        <script type="text/javascript" src="http://example.gajotres.net/iscrollview/jquery.mobile.iscrollview.js"></script-->
+        <style>
+            * {
+                /*font-family: Roboto;*/
+            }
+            .heading {
+
+                text-align: center;
+
+            }
+
+            .logo {
+
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+
+            }
+
+            select:required:invalid {
+                color: gray;
+            }
+            option[value=""][disabled] {
+                display: none;
+            }
+            option {
+                color: black;
+            }
+
+            .ui-content {
+                padding: 0 !important;
+            }
+
+            .ui-listview {
+                margin: 0 !important;
+            }
+
+            .wrapper, .wrapper div.iscroll-scroller {
+                width: 100% !important;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <div data-role="page" id="start">
+                <h1 class="heading">Buzzr</h1>
+                <h3 class="heading">A realtime buzzer app. It's as simple as that.</h3>
+                <img src="icon.png" class="logo"><br>
+                <button onclick="goTo('setup')">Set up game</button>
+            </div>
+            <div data-role="page" id="setup">
+                <h1 class="heading">Setup</h1>
+                <button onclick="goTo('managerSetup')">Manager</button>
+                <label class="heading">This device will be the Moderator device and will receive the player button inputs.</label><br>
+                <button onclick="goTo('joinMatch')">Player</button>
+                <label class="heading">This device will be one of the Player Buzzers and will send the input to the Moderator device.</label>
+            </div>
+            <div data-role="page" id="managerSetup">
+                <h1 class="heading">Manager Setup</h1>
+                <select id="gameMode">
+                    <option value="" disabled selected>[Select game mode]</option>
+                    <option value="FFA">Free for all</option>
+                    <option value="Team">Team</option>
+                </select>
+                <input type="text" id="matchName" placeholder="Match name"><br>
+                <button onclick="createMatch()">Create match</button>
+            </div>
+            <div data-role="page" id="joinMatch">
+                <h1 class="heading">Join Match</h1>
+                <div class="wrapper" data-iscroll>
+                    <div class="iscroll-pulldown">
+                        <span class="iscroll-pull-icon"><img src="img/scroll_icon.png" height="40" width="40" class="logo"></span>
+                        <span class="iscroll-pull-label">Pull down to refresh...</span>
+                    </div>
+                    <ul id="matches" data-role="listview">
+                        <li>Pull to Refresh</li>
+                    </ul>
+                </div>
+            </div>
+            <div data-role="page" id="playerSetup">
+
+            </div>
+            <div data-role="page" id="managerPage">
+            </div>
+        </div>
+    </body>
+</html>
